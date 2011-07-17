@@ -1,6 +1,43 @@
-= maybeyoumeant
+= Maybe You Meant
 
-Description goes here.
+May You Meant is an IRB extension that guesses the method you meant to call
+when you make a typo.
+
+Say for example you call
+ 'hello world'.ucase
+Maybe You Meant will output
+ Maybe you meant: 'hello world'.upcase
+and automatically call the correct method and insert the new line into your
+IRB history.
+
+== Installation
+
+ gem install maybeyoumeant
+
+The rainbow gem is installed for color console output.
+
+Put the following into you .irbrc
+ require 'rubygems'
+ require 'maybeyoumeant'
+
+== Configuration
+
+ # To turn off logging
+ MaybeYouMeant::Config.debug = false
+
+ # To not automatically call methods
+ MaybeYouMeant::Config.call_nearby = false
+
+ # To not add an updated line to IRB history
+ MaybeYouMeant::Config.add_to_history = false
+
+ # To remove the incorrect line from IRB history
+ MaybeYouMeant::Config.remove_from_history = true
+
+== How It Works
+
+Object is monkey-patched to intercept NoMethodErrors. Levenshtein distances are calculated
+for other methods on the object, and the closest one is selected and called.
 
 == Contributing to maybeyoumeant
  

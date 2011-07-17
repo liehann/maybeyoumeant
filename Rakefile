@@ -17,19 +17,26 @@ Jeweler::Tasks.new do |gem|
   gem.name = "maybeyoumeant"
   gem.homepage = "http://github.com/liehann/maybeyoumeant"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "IRB plugin that suggests corrections for misspelled method names."
+  gem.description = %Q{
+  If you misspell a method in IRB this plugin searches through methods
+  defined on the object and calls the closest method to the one you entered.
+  For example lets say you typed:
+   'hello world'.capitalze
+  Instead of raising a NoMethodError 'hello world'.capitalize would automatically
+  be called.
+  }
   gem.email = "liehannl@gmail.com"
   gem.authors = ["Liehann Loots"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new do |test|
+  test.libs << 'lib' << 'spec/lib'
+  # test.verbose = true
+  test.pattern = 'spec/**/*_spec.rb'
 end
 
 require 'rcov/rcovtask'
@@ -40,8 +47,6 @@ Rcov::RcovTask.new do |test|
   test.rcov_opts << '--exclude "gems/*"'
 end
 
-task :default => :test
-
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
@@ -51,3 +56,4 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
