@@ -15,19 +15,19 @@ module MaybeYouMeant::Config
     MaybeYouMeant::StdErrLogger === MaybeYouMeant.logger
   end
 
-  @@call_nearby = true
+  @call_nearby = true
 
   # When true if a nearby method is found it is automatically called.
   # Defaults to true.
   def self.call_nearby=(enabled)
-    @@call_nearby = enabled
+    @call_nearby = enabled
   end
 
   def self.call_nearby
-    @@call_nearby
+    @call_nearby
   end
 
-  @@add_to_history = true
+  @add_to_history = true
 
   # When true and a nearby method is called the history is manipulated to
   # have the nearby method name. Defaults to true.
@@ -36,24 +36,24 @@ module MaybeYouMeant::Config
   # Say object foo has a method 'foob' you will get the following in your history:
   # foo.foo -> foob.foob
   def self.add_to_history=(enabled)
-    @@add_to_history = true
+    @add_to_history = true
   end
 
   def self.add_to_history
-    @@add_to_history
+    @add_to_history
   end
 
-  @@remove_from_history = false
+  @remove_from_history = false
 
   # When true and a nearby method is called the history is manipulated to
   # have the line with the incorrect method name removed.
   # Defaults to false.
   def self.remove_from_history(enabled)
-    @@remove_from_history = enabled
+    @remove_from_history = enabled
   end
 
   def self.remove_from_history
-    @@remove_from_history
+    @remove_from_history
   end
 
 end
