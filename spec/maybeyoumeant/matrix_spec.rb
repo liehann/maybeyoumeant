@@ -2,7 +2,7 @@ require 'helper'
 
 describe Matrix do
   it "adds an index setter to ::Matrix" do
-    ::Matrix.instance_methods.should include '[]='
+    ::Matrix.instance_methods.map(&:to_s).should include '[]='
   end
 
   it "should set values in a ::Matrix" do
