@@ -35,7 +35,7 @@ module MaybeYouMeant
 
     # Try to match .#{method}\W before replacing all occurrences of method.
     line.gsub!(/(\W|^)#{method}((?=\W)|$)/, "\\1#{nearby}")
-    log(Paint["Maybe you meant: ", :black, :bright] + line.to_s)
+    log(Paint["Maybe you meant: ", :red] + line.to_s)
 
     Readline::HISTORY.push line if Config.add_to_history
   end

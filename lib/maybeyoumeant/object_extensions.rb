@@ -12,7 +12,10 @@ module MaybeYouMeant::ObjectExtentions
       return super unless MaybeYouMeant::Config.call_nearby && nearby
       MaybeYouMeant.tweak_history(method, nearby)
       if MaybeYouMeant::Config.ask_user
-        print "Do you want to call #{nearby} instead? [Y,n]: "
+        print Paint["Do you want to call ", :green] +
+              Paint[nearby, :green, :bright] +
+              Paint[" instead?", :green] +
+              " [Y,n]: "
         choice = gets
         return super if !choice || [78, 110].include?(choice[0])
       end
