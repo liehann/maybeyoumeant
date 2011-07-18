@@ -7,35 +7,43 @@ class MaybeYouMeant::Levenshtein
   # care about a threshold distance we only need to calculate
   # a diagonal instead of the full distance. This could be
   # further optimized to be evaluated lazily.
-  def self.distance(s, t)
+  #
+  # If max is provided the return value is the Levenshtein distance if it
+  # is less than max, otherwise it is any value greater than or equal to
+  # max.
+  def self.distance(s, t, max = nil)
     m = s.length
     n = t.length
 
-    d = ::Matrix.rows(Array.new(m + 1) { Array.new(n + 1, 0) }, false)
+    # If the string lengths differ by more than max return immediately.
+    return max if max && (m - n).abs >= max
 
-    0.upto m do |i|
-      d[i, 0] = i
-    end
+    cur = Array.new(n + 1, 0)
+    nxt = Array.new(n + 1, 0)
 
     0.upto n do |j|
-      d[0, j] = j
+      cur[j] = j
     end
 
     1.upto m do |i|
+      nxt[0] = i
       1.upto n do |j|
         # This is not unicode safe.
         if s[i - 1] == t[j - 1]
-          d[i, j] = d[i - 1, j - 1]
+          nxt[j] = cur[j - 1]
         else
-          d[i, j] = [
-            d[i - 1, j] + 1,     # deletion
-            d[i, j - 1] + 1,     # insertion
-            d[i - 1, j - 1] + 1  # substitution
+          nxt[j] = [
+            cur[j] + 1,      #deletion
+            nxt[j - 1] + 1,  #insertion
+            cur[j - 1] + 1,  #substitution
           ].min
         end
       end
+      tmp = cur
+      cur = nxt
+      nxt = tmp
     end
     
-    return d[m, n]
+    return cur[n]
   end
 end
