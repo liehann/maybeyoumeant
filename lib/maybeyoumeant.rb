@@ -3,12 +3,12 @@ module MaybeYouMeant; end
 require 'rubygems'
 require 'paint'
 
+require 'maybeyoumeant/config'
 require 'maybeyoumeant/matrix'
 require 'maybeyoumeant/levenshtein'
 require 'maybeyoumeant/object_extensions'
 require 'maybeyoumeant/nil_logger'
 require 'maybeyoumeant/std_err_logger'
-require 'maybeyoumeant/config'
 
 module MaybeYouMeant
   @logger = StdErrLogger.new
