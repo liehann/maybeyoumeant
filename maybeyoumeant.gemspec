@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{maybeyoumeant}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Liehann Loots}]
+  s.authors = ["Liehann Loots"]
   s.date = %q{2011-07-18}
   s.description = %q{
   If you misspell a method in IRB this plugin searches through methods
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "HISTORY.txt",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
@@ -33,7 +34,6 @@ Gem::Specification.new do |s|
     "lib/maybeyoumeant.rb",
     "lib/maybeyoumeant/config.rb",
     "lib/maybeyoumeant/levenshtein.rb",
-    "lib/maybeyoumeant/matrix.rb",
     "lib/maybeyoumeant/nil_logger.rb",
     "lib/maybeyoumeant/object_extensions.rb",
     "lib/maybeyoumeant/std_err_logger.rb",
@@ -43,16 +43,16 @@ Gem::Specification.new do |s|
     "spec/lib/foo.rb",
     "spec/maybeyoumeant/.matrix_spec.rb.swo",
     "spec/maybeyoumeant/levenshtein_spec.rb",
-    "spec/maybeyoumeant/matrix_spec.rb",
     "spec/maybeyoumeant/object_extensions_spec.rb"
   ]
   s.homepage = %q{http://github.com/liehann/maybeyoumeant}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{IRB plugin that suggests corrections for misspelled method names.}
 
   if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
