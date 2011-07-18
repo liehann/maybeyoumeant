@@ -2,11 +2,11 @@ require 'helper'
 
 describe ObjectExtentions do
   it 'finds a nearby method' do
-    Foo.new.nearby_method(:boo).should == 'foo'
+    Foo.new.nearby_method(:boo).to_s.should == 'foo'
   end
 
   it 'has a threshold of 2' do
-    Foo.new.nearby_method(:foobr).should == 'foo'
+    Foo.new.nearby_method(:foobr).to_s.should == 'foo'
   end
 
   it 'returns nil if there are no nearby methods' do

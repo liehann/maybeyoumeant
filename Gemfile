@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'rainbow', '~> 1.1.1'
+gem 'paint', '~> 0.8.3'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

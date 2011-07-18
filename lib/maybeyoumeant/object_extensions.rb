@@ -11,7 +11,15 @@ module MaybeYouMeant::ObjectExtentions
       # MaybeYouMeant.log { "Maybe you meant to call #{nearby}?" } if nearby
       return super unless MaybeYouMeant::Config.call_nearby && nearby
       MaybeYouMeant.tweak_history(method, nearby)
-      return send(nearby, *args, &block)
+      if MaybeYouMeant::Config.ask_user
+        print Paint["Do you want to call ", :green] +
+              Paint[nearby, :green, :bright] +
+              Paint[" instead?", :green] +
+              " [Y,n]: "
+        choice = gets
+        return super if !choice || [78, 110].include?(choice[0])
+      end
+      send(nearby, *args, &block)
     end
 
     # Returns the closest matching method to methods already defined on the object.
