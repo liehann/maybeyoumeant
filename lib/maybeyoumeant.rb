@@ -33,12 +33,11 @@ module MaybeYouMeant
     line = Readline::HISTORY[-1]
     Readline::HISTORY.pop if Config::remove_from_history
 
-    if Config.add_to_history
-      # Try to match .#{method}\W before replacing all occurrences of method.
-      line.gsub!(/(\W|^)#{method}((?=\W)|$)/, "\\1#{nearby}")
-      log("Maybe you meant: #{line}".foreground(:black).bright)
-      Readline::HISTORY.push line
-    end
+    # Try to match .#{method}\W before replacing all occurrences of method.
+    line.gsub!(/(\W|^)#{method}((?=\W)|$)/, "\\1#{nearby}")
+    log("Maybe you meant: #{line}".foreground(:black).bright)
+
+    Readline::HISTORY.push line if Config.add_to_history
   end
 end
 

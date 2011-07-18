@@ -56,4 +56,17 @@ module MaybeYouMeant::Config
     @remove_from_history
   end
 
+  @ask_user = false
+
+  # When true, the nearby method is not called directly, but the user
+  # can decide if he wants to call it
+  # Defaults to false
+  def self.ask_user=(enabled)
+    @ask_user = enabled
+  end
+
+  def self.ask_user
+    @ask_user
+  end
+
 end
