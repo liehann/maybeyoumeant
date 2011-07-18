@@ -1,0 +1,9 @@
+0.3.0 
+ - Working for Ruby 1.9
+ - Improved on Levenshtein space complexity
+0.2.0 Merged in janlelis changes:
+ - Rainbow replaced with Paint
+ - ask_user feature
+ - Fixes for Ruby 1.9
+0.1.0 Initial release. Broken for Ruby 1.9
+
