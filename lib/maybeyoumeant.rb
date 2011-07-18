@@ -1,7 +1,7 @@
 module MaybeYouMeant; end
 
 require 'rubygems'
-require 'rainbow'
+require 'paint'
 
 require 'maybeyoumeant/matrix'
 require 'maybeyoumeant/levenshtein'
@@ -35,7 +35,7 @@ module MaybeYouMeant
 
     # Try to match .#{method}\W before replacing all occurrences of method.
     line.gsub!(/(\W|^)#{method}((?=\W)|$)/, "\\1#{nearby}")
-    log("Maybe you meant: #{line}".foreground(:black).bright)
+    log(Paint["Maybe you meant: ", :black, :bright] + line.to_s)
 
     Readline::HISTORY.push line if Config.add_to_history
   end
